@@ -3,4 +3,5 @@
 /myvenv
 core/settings.py
 main/migrations/
+main/__pycache__/
 core/__pycache__/
