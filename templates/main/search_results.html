@@ -1,0 +1,41 @@
+{% extends 'layout/basic.html' %}
+{% load thumbnail %}
+{% load static %}
+{% block title %}Результаты поиска {% endblock %}
+{% block content %}
+<h2>Результаты поиска:</h2>
+  {% if not object_list %} 
+<div class="alert alert-light" role="alert"><h4>По Вашему запросу ничего не найдено, попробуйте изменить запрос</h4></div>
+  {% endif %} 
+  {% for bb in object_list %}
+  {% url 'main:detail' rubric_pk=bb.rubric.pk pk=bb.pk as url %}
+<hr>
+<div class="row">
+<div class="col-md-3">
+<a href="{{ url }}{{ all }}">
+  {% if bb.image %}
+<img src="{% thumbnail bb.image 'default' %}" width=100% alt="{{ bb.title }}">
+  {% else %}
+<img src="{% static 'image/notimage.png' %}" width=100% alt="{{ bb.title }}">
+  {% endif %}
+</a>
+</div>
+<div class="col">
+<h4><a href="{{ url }}{{ all }}" class="text-decoration-none text-reset">{{ bb.title }} - {{ bb.writer }}</a></h4>
+<p>{% autoescape off %}{{ bb.content|truncatewords:50 }}{% endautoescape %}</p>
+<span class="badge text-bg-light">{{ bb.rubric.name }}</span>
+  {% if bb.lang_category == 1 %}<span class="badge text-bg-light">русский</span>{% endif %}
+  {% if bb.lang_category == 2 %}<span class="badge text-bg-light">english</span>{% endif %}  
+  {% if bb.formate == 1 %}<span class="badge text-bg-light">PDF</span>{% endif %}
+  {% if bb.formate == 2 %}<span class="badge text-bg-light">FB2</span>{% endif %}
+  {% if bb.formate == 3 %}<span class="badge text-bg-light">EPUB</span>{% endif %}
+  {% if bb.formate == 4 %}<span class="badge text-bg-light">MOBI</span>{% endif %} 
+  {% if bb.formate == 5 %}<span class="badge text-bg-light">TXT</span>{% endif %}
+  {% if bb.formate == 6 %}<span class="badge text-bg-light">DJVU</span>{% endif %} 
+  {% if bb.formate == 7 %}<span class="badge text-bg-light">DOC</span>{% endif %}
+  {% if bb.formate == 8 %}<span class="badge text-bg-light">ZIP</span>{% endif %} 
+  {% if bb.formate == 9 %}<span class="badge text-bg-light">RAR</span>{% endif %} 
+</div>
+</div>
+  {% endfor %}   
+{% endblock %}

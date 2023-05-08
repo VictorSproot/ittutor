@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% load bootstrap5 %}
+  {% include "include/css.html" %}   
+  <title>
+    {% block title %}ITTutoR_RU - Твой IT наставник {% endblock %} | ITTutoR_RU 
+  </title>      
+</head>
+<body>   
+    {% include "include/navbar.html" %}
+  <br/>
+  <div class="container">
+  <div class="row">
+    {% include "include/menu.html" %}
+  <div class="col-sm">
+    {% bootstrap_messages %}
+    {% block content %}
+    {% endblock %}
+  </div>
+  </div>
+  </div>
+    {% include "include/footer.html" %}
+    {% include "include/js.html" %}      
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends 'layout/basic.html' %}
+{% load bootstrap5 %}
+{% block title %}Добавление книги - Профиль пользователя{% endblock %}
+{% block content %}
+<h2>Добавление книги</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="col-md-10">
+    {% bootstrap_form form %}
+    {{ form.media }}
+</div> 
+    {% bootstrap_button button_type="submit" button_class="btn btn-light" content="Добавить" %}
+</form>
+<hr>
+{% endblock %}

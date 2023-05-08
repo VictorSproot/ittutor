@@ -1,0 +1,74 @@
+{% extends 'layout/basic.html' %}
+{% load thumbnail %}
+{% load bootstrap5 %}
+{% block title %}{{ bb.title }} - {{ bb.rubric.name }}{% endblock %}
+{% block content %}
+<div class="row">
+  {% if bb.image %}
+<div class="col-md-3">
+<img src="{% thumbnail bb.image 'default' %}" width="100%" alt="{{ bb.title }}">
+</div>
+  {% endif %}
+<div class="col">
+<li class="list-group-item d-flex justify-content-between align-items-start">
+<div class="ms-2 me-auto">
+<h3>{{ bb.title }}</h3>
+<h6>Автор: {{ bb.writer }}</h6>
+<h6>Дата выхода: {{ bb.relise }}</h6>    
+</div>
+<i class="bi bi-three-dots-vertical fs-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>     
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" href="{% url 'main:profile_bb_change' pk=bb.pk %}"><i class="bi bi-pencil"></i> Редактировать</a></li>      
+<li><a class="dropdown-item" href="{% url 'main:profile_bb_delete' pk=bb.pk %}"><i class="bi bi-trash3"></i> Удалить</a></li>     
+</ul>
+</li>
+<p>{% autoescape off %}{{ bb.content }}{% endautoescape %}</p>       
+</br>
+{% if bb.file_book %}
+<a href="{{ bb.file_book.url }}" target="_blank" download="{{ bb.title }}.pdf" class="btn btn-light">
+<i class="bi bi-cloud-arrow-down" aria-hidden="true"></i><b>&nbsp;Скачать&nbsp;
+  {% if bb.formate == 1 %} PDF <i class="bi bi-filetype-pdf"></i>{% endif %}
+  {% if bb.formate == 2 %}FB2{% endif %}
+  {% if bb.formate == 3 %}EPUB{% endif %}
+  {% if bb.formate == 4 %}MOBI{% endif %} 
+  {% if bb.formate == 5 %} TXT <i class="bi bi-filetype-txt"></i>{% endif %}
+  {% if bb.formate == 6 %}DJVU{% endif %} 
+  {% if bb.formate == 7 %} DOC <i class="bi bi-filetype-doc"></i>{% endif %}
+  {% if bb.formate == 8 %} ZIP <i class="bi bi-file-zip"></i>{% endif %} 
+  {% if bb.formate == 9 %} RAR <i class="bi bi-file-zip"></i>{% endif %} 
+</b></a>
+  {% else %}
+  <a href="{{ bb.slug }}" target="_blank" download="{{ bb.title }}.pdf" class="btn btn-light">
+  <i class="bi bi-cloud-arrow-down" aria-hidden="true"></i><b>&nbsp;Скачать&nbsp;
+    {% if bb.formate == 1 %} PDF <i class="bi bi-filetype-pdf"></i>{% endif %}
+    {% if bb.formate == 2 %}FB2{% endif %}
+    {% if bb.formate == 3 %}EPUB{% endif %}
+    {% if bb.formate == 4 %}MOBI{% endif %} 
+    {% if bb.formate == 5 %} TXT <i class="bi bi-filetype-txt"></i>{% endif %}
+    {% if bb.formate == 6 %}DJVU{% endif %} 
+    {% if bb.formate == 7 %} DOC <i class="bi bi-filetype-doc"></i>{% endif %}
+    {% if bb.formate == 8 %} ZIP <i class="bi bi-file-zip"></i>{% endif %} 
+    {% if bb.formate == 9 %} RAR <i class="bi bi-file-zip"></i>{% endif %} 
+  </b></a>
+  {% endif %}
+</div>
+</div>
+<hr>
+  {% if comments %}
+<div class="mt-5">
+  {% for comment in comments %}
+<div class="my-2 p-2 border">
+<h5>{{ comment.author }}</h5>
+<p>{{ comment.content }}</p>
+<p class="text-right font-italic">{{ comment.created_at }}</p>
+</div>
+  {% endfor %}
+</div>
+  {% endif %}
+<h4 class="mt-5">Новый комментарий</h4>
+<form method="post">
+  {% csrf_token %}
+  {% bootstrap_form form layout='horizontal' %}
+  {% bootstrap_button button_type="submit" button_class="btn btn-light" content="Добавить" %}
+</form>
+{% endblock %}

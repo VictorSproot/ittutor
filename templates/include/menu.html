@@ -1,0 +1,24 @@
+<div class="col-sm-3 d-none d-lg-block">
+<ul class="list-group-flush">
+    {% for rubric in rubrics %}
+<li class="list-group-item"><h5><a href="{% url 'main:by_rubric' pk=rubric.pk %}" class="text-decoration-none text-reset"><i class="bi bi-newspaper"></i> {{ rubric.name }} </a></h5></li>
+    {% endfor %}
+</ul>   
+</div>
+<div class="d-lg-none">    
+<ul class="list-group-flush">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas-header">
+<div class="container text-center"><h5 class="offcanvas-title" id="offcanvasExampleLabel">Меню</h5></div>
+<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+</div>
+<div class="offcanvas-body">
+    {% for rubric in rubrics %}
+<li class="list-group-item"><h5><a href="{% url 'main:by_rubric' pk=rubric.pk %}" class="text-decoration-none text-reset"><i class="bi bi-newspaper"></i> {{ rubric.name }} </a></h5></li>
+    {% endfor %} 
+</div>
+</div>
+</ul>
+</div>
+     
+    

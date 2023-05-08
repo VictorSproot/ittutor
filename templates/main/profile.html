@@ -1,0 +1,63 @@
+{% extends 'layout/basic.html' %}
+{% load thumbnail %}
+{% load static %}
+{% load bootstrap5 %}
+{% block title %}Профиль пользователя{% endblock %}
+{% block content %}
+<div class="row align-items-start">
+<div class="col-md-3">
+  {% if user.avatar %}
+<img src="{% thumbnail user.avatar 'default' %}" class="rounded border border-secondary border-2" width=100% alt="{{ user.username }}"><br>
+  {% else %}
+<img src="{% static 'image/notimage.png' %}" width=100% alt="{{ user.username }}">
+  {% endif %}
+<br><h6>Профиль пользователя {{ user.username }}</h6><br>
+  {% if user.is_authenticated %}     
+<a class="dropdown-item" href="{% url 'main:profile_bb_add' %}"><i class="bi bi-book"></i> &nbsp Добавить книгу</a> 
+<a class="dropdown-item" href="{% url 'main:profile_change' %}"><i class="bi bi-pencil-square"></i> &nbsp Редактировать профиль</a>  
+<a class="dropdown-item" href="{% url 'main:password_change' %}"><i class="bi bi-shield-exclamation"></i> &nbsp Изменить пароль</a>            
+<a class="dropdown-item" href="{% url 'main:logout' %}"><i class="bi bi-door-open"></i> &nbsp Выход</a>      
+<a class="dropdown-item" href="{% url 'main:profile_delete' %}"><i class="bi bi-trash"></i> &nbsp Удалить профиль</a>  
+  {% else %}
+<a class="dropdown-item" href="{% url 'main:login' %}"><i class="bi bi-person-check"></i> &nbsp Вход</a>
+  {% endif %}
+</div>
+<div class="col">
+<div class="d-lg-none"><br></div> 
+<h3>Ваши книги:</h3>
+  {% if bbs %}
+  {% for bb in bbs %}
+  {% url 'main:profile_bb_detail' pk=bb.pk as url %}
+<hr>
+<div class="row">
+<div class="col-1 d-none d-lg-block">
+<a href="{{ url }}{{ all }}">
+   {% if bb.image %}
+<img src="{% thumbnail bb.image 'default' %}" class="border border-secondary" width=100% alt="{{ bb.title }}">
+   {% else %}
+<img src="{% static 'image/notimage.png' %}" class="border border-secondary"  width=100% alt="{{ bb.title }}">
+   {% endif %}
+</a>
+</div>
+<div class="col">
+<li class="list-group-item d-flex justify-content-between align-items-start">
+<div class="ms-2 me-auto">
+<h6><a href="{{ url }}{{ all }}" class="text-decoration-none text-reset">{{ bb.title }} - {{ bb.writer }} ({{ bb.relise }})</a></h6>
+</div>
+<i class="bi bi-three-dots-vertical fs" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>     
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" href="{% url 'main:profile_bb_change' pk=bb.pk %}"><i class="bi bi-pencil"></i> Редактировать</a></li>  
+<li><a class="dropdown-item" href="{% url 'main:profile_bb_delete' pk=bb.pk %}"><i class="bi bi-trash3"></i> Удалить</a></li>     
+</ul>
+</li>
+</div>
+</div>
+{% endfor %}
+{% else %}
+<div class="alert alert-light" role="alert">
+У вас пока нет книг, нажмите<a href="{% url 'main:profile_bb_add' %}" class="text-decoration-none text-reset"><strong> сюда</strong> что бы добавить</a>
+</div>
+</div>
+</div>
+{% endif %}
+{% endblock %}

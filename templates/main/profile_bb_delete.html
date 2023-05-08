@@ -1,0 +1,10 @@
+{% extends 'layout/basic.html' %}
+{% load bootstrap5 %}
+{% block title %}Удаление объявления - Профиль пользователя{% endblock %}
+{% block content %}
+<h4>Вы собираетесь удалить книгу <a href="{% url 'main:profile_bb_detail' pk=bb.pk %}" class="text-decoration-none text-reset">"{{ bb.title }}"</a></h4>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_button button_type="submit" button_class="btn btn-light" content="Удалить" %}
+</form>
+{% endblock %}

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+
+  <nav class="navbar navbar-expand-lg bg-white-body-tertiary">
+    <div class="container-fluid">                  
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Переключатель навигации">
+        <span class="navbar-toggler-icon"></span>
+      </button>           
+    </div>
+  </nav>
+
+<a class="navbar-brand" href="/"><h3><strong>ITTutoR_RU </strong></h3></a>
+<div class="d-lg-none">
+  <div class="dropstart">    
+    <i class="bi bi-person-circle position-relative" style="font-size: 2rem;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i>&nbsp;&nbsp;
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% if user.is_authenticated %}     
+    <li><a class="dropdown-item" href="{% url 'main:profile' %}"><i class="bi bi-person-square"></i> Профиль</a></li>
+    <li><a class="dropdown-item" href="{% url 'main:profile_bb_add' %}"><i class="bi bi-book"></i> Добавить книгу</a></li>  
+    <li><a class="dropdown-item" href="{% url 'main:profile_change' %}"><i class="bi bi-pencil-square"></i> Редактировать профиль</a></li>  
+    <li><a class="dropdown-item" href="{% url 'main:password_change' %}"><i class="bi bi-shield-exclamation"></i> Изменить пароль</a></li>               
+    <li><a class="dropdown-item" href="{% url 'main:logout' %}"><i class="bi bi-door-open"></i> Выход</a></li>         
+    <li><a class="dropdown-item" href="{% url 'main:profile_delete' %}"><i class="bi bi-trash"></i> Удалить профиль</a></li>   
+      {% else %}
+    <li><a class="dropdown-item" href="{% url 'main:login' %}"><i class="bi bi-person-check"></i> Вход</a></li> 
+    <li><a class="dropdown-item" href="{% url 'main:register' %}"><i class="bi bi-person-plus"></i> Регистрация</a></li> 
+      {% endif %}
+    </ul>
+    </div>
+</div>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="bi bi-search"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
+</ul>  
+<div class="col-sm-0 d-none d-lg-block">      
+<div class="dropdown-center">    
+<i class="bi bi-person-circle position-relative" style="font-size: 2rem;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i>&nbsp;&nbsp;
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  {% if user.is_authenticated %}     
+<li><a class="dropdown-item" href="{% url 'main:profile' %}"><i class="bi bi-person-square"></i> Профиль</a></li>
+<li><a class="dropdown-item" href="{% url 'main:profile_bb_add' %}"><i class="bi bi-book"></i> Добавить книгу</a></li>  
+<li><a class="dropdown-item" href="{% url 'main:profile_change' %}"><i class="bi bi-pencil-square"></i> Редактировать профиль</a></li>  
+<li><a class="dropdown-item" href="{% url 'main:password_change' %}"><i class="bi bi-shield-exclamation"></i> Изменить пароль</a></li>               
+<li><a class="dropdown-item" href="{% url 'main:logout' %}"><i class="bi bi-door-open"></i> Выход</a></li>         
+<li><a class="dropdown-item" href="{% url 'main:profile_delete' %}"><i class="bi bi-trash"></i> Удалить профиль</a></li>   
+  {% else %}
+<li><a class="dropdown-item" href="{% url 'main:login' %}"><i class="bi bi-person-check"></i> Вход</a></li> 
+<li><a class="dropdown-item" href="{% url 'main:register' %}"><i class="bi bi-person-plus"></i> Регистрация</a></li> 
+  {% endif %}
+</ul>
+</div>
+</div>
+  {% block search %}   
+  {% include "include/search.html" %}
+  {% endblock %}
+</div>
+</div>
+</nav>

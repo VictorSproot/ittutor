@@ -1,0 +1,10 @@
+{% extends 'layout/basic.html' %}
+{% load bootstrap5 %}
+{% block title %}Удаление пользователя{% endblock %}
+{% block content %}
+<h3>Вы действительно хотите удалить аккаунт пользователя {{ object.username }}?</h3>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_button button_type="submit" button_class="btn btn-light" content="Удалить" %}
+</form>
+{% endblock %}
