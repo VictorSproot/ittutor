@@ -93,6 +93,7 @@ FORMAT = (
 
 class Bb(models.Model):
     title = models.CharField(max_length=40, verbose_name='Название книги')
+    slug = models.SlugField(max_length=250, verbose_name='Адрес страницы')
     writer = models.CharField(max_length=40, verbose_name='Автор книги')
     rubric = models.ForeignKey(SubRubric, on_delete=models.PROTECT, verbose_name='Язык программирования')
     relise = models.CharField(max_length=4, verbose_name='Год выхода')
