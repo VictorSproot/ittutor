@@ -101,7 +101,7 @@ class Bb(models.Model):
     image = models.ImageField(blank=True, upload_to=generate_filename_jpg, verbose_name='Обложка')
     formate = models.IntegerField(choices=FORMAT, default=1, db_index=True, verbose_name='Формат файла')
     file_book = models.FileField(blank=True, upload_to=generate_filename, verbose_name='Файл')
-    slug = models.CharField(max_length=100, blank=True, verbose_name='Ссылка с другого ресурса')
+    slug_file = models.CharField(max_length=100, blank=True, verbose_name='Ссылка с другого ресурса')
     author = models.ForeignKey(AdvUser, on_delete=models.CASCADE, verbose_name='Добавил книгу')
     is_active = models.BooleanField(default=True, db_index=True, verbose_name='Выводить в списке?')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')
