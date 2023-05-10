@@ -212,8 +212,8 @@ def profile_bb_add(request):
             messages.add_message(request, messages.SUCCESS, 'Книга будет опубликована сразу после поверки модератора')
             return redirect('main:profile')
     else:
-        form = BbForm(initial={'author': request.user.pk})
-    context = {'form': form}
+        form = BbForm(initial={'author': request.user.pk},)
+        context = {'form': form}
     return render(request, 'main/profile_bb_add.html', context)
 
 

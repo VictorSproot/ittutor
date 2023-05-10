@@ -72,7 +72,7 @@ class BbForm(forms.ModelForm):
     class Meta:
         model = Bb
         fields = '__all__'
-        widgets = {'author': forms.HiddenInput, 'is_active': forms.HiddenInput, 'slug': forms.HiddenInput,}
+        widgets = {'author': forms.HiddenInput, 'is_active': forms.HiddenInput,}
 
 
 
