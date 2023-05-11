@@ -72,7 +72,6 @@ def generate_filename_jpg(instance, filename):
     filename = instance.title + '.jpg'
     return "{0}/{1}".format(instance, filename)    
 
-
 CATEGORIES = (
     (1, 'Русский'),
     (2, 'Английский')
@@ -105,8 +104,6 @@ class Bb(models.Model):
     author = models.ForeignKey(AdvUser, on_delete=models.CASCADE, verbose_name='Добавил книгу')
     is_active = models.BooleanField(default=True, db_index=True, verbose_name='Выводить в списке?')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')
-
-
 
     def __str__(self):
         return self.title

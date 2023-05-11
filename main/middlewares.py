@@ -1,6 +1,5 @@
 from .models import SubRubric
 
-
 def bboard_context_processor(request):
     context = {'rubrics': SubRubric.objects.all(), 'keyword': '', 'all': ''}
     if 'keyword' in request.GET:

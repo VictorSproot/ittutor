@@ -75,8 +75,6 @@ class BbForm(forms.ModelForm):
         widgets = {'author': forms.HiddenInput, 'is_active': forms.HiddenInput,}
 
 
-
-
 class UserCommentForm(forms.ModelForm):
     class Meta:
         model = Comment

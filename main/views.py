@@ -17,8 +17,7 @@ from django.contrib import messages
 from django.db.models import Q 
 from django.views.generic import ListView
 from .models import AdvUser, SubRubric, Bb, Comment
-from .forms import ChangeUserInfoForm, RegisterUserForm, SearchForm, BbForm, UserCommentForm, \
-    GuestCommentForm
+from .forms import ChangeUserInfoForm, RegisterUserForm, SearchForm, BbForm, UserCommentForm, GuestCommentForm
 from .utilities import signer
 
 
