@@ -19,6 +19,7 @@ from django.views.generic import ListView
 from .models import AdvUser, SubRubric, Bb, Comment
 from .forms import ChangeUserInfoForm, RegisterUserForm, SearchForm, BbForm, UserCommentForm, GuestCommentForm
 from .utilities import signer
+from django.contrib.sitemaps import Sitemap
 
 
 class SearchResultsView(ListView):
@@ -241,3 +242,6 @@ def profile_bb_delete(request, pk):
     else:
         context = {'bb': bb}
     return render(request, 'main/profile_bb_delete.html', context)
+
+
+
