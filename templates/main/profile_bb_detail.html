@@ -38,7 +38,7 @@
   {% if bb.formate == 9 %} RAR <i class="bi bi-file-zip"></i>{% endif %} 
 </b></a>
   {% else %}
-  <a href="{{ bb.slug }}" target="_blank" download="{{ bb.title }}.pdf" class="btn btn-light">
+  <a href="{{ bb.file_slug }}" target="_blank" download="{{ bb.title }}.pdf" class="btn btn-light">
   <i class="bi bi-cloud-arrow-down" aria-hidden="true"></i><b>&nbsp;Скачать&nbsp;
     {% if bb.formate == 1 %} PDF <i class="bi bi-filetype-pdf"></i>{% endif %}
     {% if bb.formate == 2 %}FB2{% endif %}
