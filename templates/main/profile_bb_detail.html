@@ -7,23 +7,7 @@
   {% if bb.image %}
 <div class="col-md-3">
 <img src="{% thumbnail bb.image 'default' %}" width="100%" alt="{{ bb.title }}">
-</div>
-  {% endif %}
-<div class="col">
-<li class="list-group-item d-flex justify-content-between align-items-start">
-<div class="ms-2 me-auto">
-<h3>{{ bb.title }}</h3>
-<h6>Автор: {{ bb.writer }}</h6>
-<h6>Дата выхода: {{ bb.relise }}</h6>    
-</div>
-<i class="bi bi-three-dots-vertical fs-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>     
-<ul class="dropdown-menu">
-<li><a class="dropdown-item" href="{% url 'main:profile_bb_change' pk=bb.pk %}"><i class="bi bi-pencil"></i> Редактировать</a></li>      
-<li><a class="dropdown-item" href="{% url 'main:profile_bb_delete' pk=bb.pk %}"><i class="bi bi-trash3"></i> Удалить</a></li>     
-</ul>
-</li>
-<p>{% autoescape off %}{{ bb.content }}{% endautoescape %}</p>       
-</br>
+</br></br>
 {% if bb.file_book %}
 <a href="{{ bb.file_book.url }}" target="_blank" download="{{ bb.title }}.pdf" class="btn btn-light">
 <i class="bi bi-cloud-arrow-down" aria-hidden="true"></i><b>&nbsp;Скачать&nbsp;
@@ -51,6 +35,23 @@
     {% if bb.formate == 9 %} RAR <i class="bi bi-file-zip"></i>{% endif %} 
   </b></a>
   {% endif %}
+
+</div>
+  {% endif %}
+<div class="col">
+<li class="list-group-item d-flex justify-content-between align-items-start">
+<div class="ms-2 me-auto">
+<h3>{{ bb.title }}</h3>
+<h6>Автор: {{ bb.writer }}</h6>
+<h6>Дата выхода: {{ bb.relise }}</h6>    
+</div>
+<i class="bi bi-three-dots-vertical fs-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>     
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" href="{% url 'main:profile_bb_change' pk=bb.pk %}"><i class="bi bi-pencil"></i> Редактировать</a></li>      
+<li><a class="dropdown-item" href="{% url 'main:profile_bb_delete' pk=bb.pk %}"><i class="bi bi-trash3"></i> Удалить</a></li>     
+</ul>
+</li>
+<p>{% autoescape off %}{{ bb.content }}{% endautoescape %}</p>       
 </div>
 </div>
 <hr>

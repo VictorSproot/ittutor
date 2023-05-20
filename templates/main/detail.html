@@ -7,15 +7,7 @@
   {% if bb.image %}
 <div class="col-md-3">
 <img src="{% thumbnail bb.image 'default' %}" width="100%" alt="{{ bb.title }}">
-</div>
-  {% endif %}
-<div class="col">
-<h3>{{ bb.title }}</h3>
-<h6>Автор: {{ bb.writer }}</h6>
-<h6>Дата выхода: {{ bb.relise }}</h6>
-<p>{% autoescape off %}{{ bb.content }}{% endautoescape %}</p>
-<!-- <h6>Добавил: {{ bb.author}}</h6> -->
-<br>
+<br><br>
   {% if bb.file_book %}
 <a href="{{ bb.file_book.url }}" target="_blank" download="{{ bb.title }}.pdf" class="btn btn-light">
 <i class="bi bi-cloud-arrow-down" aria-hidden="true"></i><b>&nbsp;Скачать&nbsp;
@@ -43,6 +35,15 @@
     {% if bb.formate == 9 %} RAR <i class="bi bi-file-zip"></i>{% endif %} 
   </b></a>
   {% endif %}
+</div>
+  {% endif %}
+<div class="col">
+<h3>{{ bb.title }}</h3>
+<h6>Автор: {{ bb.writer }}</h6>
+<h6>Дата выхода: {{ bb.relise }}</h6>
+<p>{% autoescape off %}{{ bb.content }}{% endautoescape %}</p>
+<!-- <h6>Добавил: {{ bb.author}}</h6> -->
+
 </div>
 </div>
   {% if comments %}
